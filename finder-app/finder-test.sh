@@ -35,7 +35,7 @@ rm -rf "${WRITEDIR}"
 #fi
 
 # create $WRITEDIR if not assignment1
-assignment=`cat ../conf/assignment.txt`
+assignment=`cat conf/assignment.txt`
 
 if [ $assignment != 'assignment1' ]
 then
