@@ -13,7 +13,7 @@ BUSYBOX_VERSION=1_33_1
 FINDER_APP_DIR=$(realpath $(dirname $0))
 ARCH=arm64
 CROSS_COMPILE=aarch64-none-linux-gnu-
-SYSROOT=/home/jqiao/Development/arm-cross-compiler/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc
+##SYSROOT=/home/jqiao/Development/arm-cross-compiler/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc
 
 OUTDIR=$1
 if [ -z "${OUTDIR}" ]; then
@@ -101,9 +101,8 @@ make ARCH=${ARCH} CONFIG_PREFIX=${OUTDIR}/rootfs CROSS_COMPILE=${CROSS_COMPILE} 
 ${CROSS_COMPILE}readelf -a ${OUTDIR}/rootfs/bin/busybox | grep "program interpreter"
 ${CROSS_COMPILE}readelf -a ${OUTDIR}/rootfs/bin/busybox | grep "Shared library"
 
-# #DO NOT USE FOR NOW
-# #export SYSROOT=$(${CROSS_COMPILE}gcc -print-sysroot)
-# #echo "SYSROOT is ${SYSROOT}"
+export SYSROOT=$(${CROSS_COMPILE}gcc -print-sysroot)
+echo "SYSROOT is ${SYSROOT}"
 
 # TODO: Add library dependencies to rootfs
 # #DO NOT USE FOR NOW
