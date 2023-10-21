@@ -27,7 +27,7 @@ fi
 
 MATCHSTR="The number of files are ${NUMFILES} and the number of matching lines are ${NUMFILES}"
 
-echo "Writing ${NUMFILES} files containing string ${WRITESTR} to ${WRITEDIR}"
+#echo "Writing ${NUMFILES} files containing string ${WRITESTR} to ${WRITEDIR}"
 
 #rm -rf "${WRITEDIR}"
 #if	[!	-d	"${WRITEDIR}"];	then
