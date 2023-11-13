@@ -27,7 +27,7 @@ fi
 
 MATCHSTR="The number of files are ${NUMFILES} and the number of matching lines are ${NUMFILES}"
 
-echo "Writing ${NUMFILES} files containing string ${WRITESTR} to ${WRITEDIR}"
+#echo "Writing ${NUMFILES} files containing string ${WRITESTR} to ${WRITEDIR}"
 
 #rm -rf "${WRITEDIR}"
 #if	[!	-d	"${WRITEDIR}"];	then
@@ -61,9 +61,8 @@ for i in $( seq 1 $NUMFILES)
 do	
 	echo "write str to file"
 	./writer "/tmp/assignment4-result.txt" "$WRITESTR"
-done
 
-OUTPUTSTRING=$(./finder.sh "$WRITEDIR" "$WRITESTR")
+OUTPUTSTRING=$(./etc/finder-app/finder.sh "$WRITEDIR" "$WRITESTR")
 
 # remove temporary directories
 #$rm -rf /tmp/aeld-data
