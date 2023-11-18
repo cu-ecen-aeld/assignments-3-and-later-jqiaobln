@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/bin/sh
 
 # Path to the aesdsocket executable
-AESDSOCKET="/path/to/aesdsocket"
+AESDSOCKET="aesdsocket"
 
 # Function to start the aesdsocket daemon
 start() {
