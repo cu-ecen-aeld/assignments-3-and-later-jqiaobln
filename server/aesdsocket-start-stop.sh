@@ -5,11 +5,13 @@ AESDSOCKET="aesdsocket"
 
 # Function to start the aesdsocket daemon
 start() {
+    echo "starting aesdsocket daemon"
     start-stop-daemon --start --background --exec "$AESDSOCKET" -- -d
 }
 
 # Function to stop the aesdsocket daemon
 stop() {
+    echo "stoping aesdsocket daemon"
     start-stop-daemon --stop --signal SIGTERM --exec "$AESDSOCKET"
 }
 
