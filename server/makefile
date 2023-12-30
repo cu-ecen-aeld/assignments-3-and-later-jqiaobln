@@ -1,7 +1,7 @@
-CC=$(CROSS_COMPILE)gcc
-CFLAGS=	-g	-Wall -pthread
+CC ?= $(CROSS_COMPILE)gcc
+CFLAGS ?=	-g	-Wall -pthread
 
-TARGET=aesdsocket
+TARGET ?=aesdsocket
 
 all:	$(TARGET)
 
