@@ -132,11 +132,8 @@ void *client_thread(void *arg)
         }
     }
 
-    printf("Before close fd \n");
     // Close the client connection
     close(client_fd);
-
-    printf("After close fd \n");
 
     // Mark the thread as completed
     struct thread_node* thread_info = node->thread;
