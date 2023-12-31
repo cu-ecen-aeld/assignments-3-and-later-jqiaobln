@@ -141,7 +141,7 @@ void *client_thread(void *arg)
     // Mark the thread as completed
     struct thread_node* thread_info = node->thread;
     //thread_info->thread_id = pthread_self();
-    thread_info->completed = 1;
+    //thread_info->completed = 1;
 
     printf("Thread completed\n");
 
