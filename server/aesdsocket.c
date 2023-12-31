@@ -84,6 +84,8 @@ void *client_thread(void *arg)
     ssize_t bytes_received;
     size_t total_bytes_received = 0;
 
+    printf("New client thread!!\n");
+
     if (fileno(data_file) == -1)
     {
         printf("Invalid file descriptor\n");
