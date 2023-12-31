@@ -59,6 +59,8 @@ void handle_signal(int signal)
     pthread_cancel(thread);
     pthread_join(thread, NULL);
 
+    printf("Thread signaled\n");
+
     // Clean up and exit
     fclose(data_file);
     remove(DATA_FILE);
@@ -137,6 +139,8 @@ void *client_thread(void *arg)
     struct thread_node* thread_info = node->thread;
     //thread_info->thread_id = pthread_self();
     thread_info->completed = 1;
+
+    printf("Thread completed\n");
 
     pthread_exit(NULL);
 }
@@ -270,8 +274,8 @@ int main(int argc, char* argv[])
     if (pthread_create(&timestamp_thread, NULL, append_timestamp, NULL) != 0)
     {
         syslog(LOG_ERR, "Failed to create timestamp thread");
-        pthread_cancel(thread);
-        pthread_join(thread, NULL);
+        pthread_cancel(timestamp_thread);
+        pthread_join(timestamp_thread, NULL);
         pthread_mutex_destroy(&data_mutex);
         fclose(data_file);
         remove(DATA_FILE);
@@ -305,6 +309,9 @@ int main(int argc, char* argv[])
         if (pthread_create(&thread_info->thread_id, NULL, client_thread, node_info) != 0)
         {
             syslog(LOG_ERR, "Failed to create client thread");
+            printf("Failed to create client thread");
+            pthread_cancel(thread_info->thread_id);
+            pthread_join(thread_info->thread_id, NULL);
             free(thread_info);
             free(client_info);
             continue;
@@ -313,6 +320,9 @@ int main(int argc, char* argv[])
         // Add the thread information to the thread list
         SLIST_INSERT_HEAD(&thread_head, thread_info, entries);
     }
+
+    
+    printf("All threads completed");
 
     // Wait for all client threads to complete
     struct thread_node* thread_info;
