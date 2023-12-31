@@ -145,7 +145,8 @@ void *client_thread(void *arg)
 
     printf("Thread completed\n");
 
-    pthread_exit(NULL);
+    pthread_cancel(pthread_self());
+    //pthread_exit(NULL);
 }
 
 void *append_timestamp(void *arg)
