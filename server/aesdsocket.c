@@ -158,6 +158,8 @@ void *append_timestamp(void *arg)
         fflush(data_file);
         pthread_mutex_unlock(&data_mutex);
 
+        printf("Timestamp: %s\n", timestamp);
+
         // Sleep for 10 seconds
         sleep(10);
     }
