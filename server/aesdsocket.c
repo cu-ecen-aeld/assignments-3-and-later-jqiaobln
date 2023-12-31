@@ -18,9 +18,6 @@
 #define PORT 9000
 #define DATA_FILE "/var/tmp/aesdsocketdata"
 
-#include <stdbool.h>
-
-volatile bool terminate = false;
 static int running = 1;
 pthread_mutex_t data_mutex;
 pthread_t thread;
@@ -330,9 +327,6 @@ int main(int argc, char* argv[])
 
     
     printf("All threads completed");
-
-    // Set the termination flag
-    terminate = true;
 
     // Wait for all client threads to complete
     struct thread_node* thread_info;

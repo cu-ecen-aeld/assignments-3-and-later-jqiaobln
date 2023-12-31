@@ -3,6 +3,8 @@ CFLAGS ?=	-g	-Wall -pthread
 
 TARGET ?=aesdsocket
 
+LDFLAGS ?=	-lpthread -lrt
+
 all:	$(TARGET)
 
 $(TARGET):	$(TARGET)
