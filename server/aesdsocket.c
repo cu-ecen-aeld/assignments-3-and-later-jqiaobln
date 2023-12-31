@@ -190,6 +190,8 @@ int main(int argc, char* argv[])
     // Open the syslog
     openlog("aesdsocket", LOG_PID, LOG_USER);
 
+    printf("aesksocket starts\n");
+
     // Create the server socket
     if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0) {
         syslog(LOG_ERR, "Failed to create socket: %s", strerror(errno));
@@ -240,6 +242,7 @@ int main(int argc, char* argv[])
             return 0;
         }
 
+        printf("aesksocket daemon starts\n");
         // Child process continues
         umask(0);
         setsid();
