@@ -18,6 +18,9 @@
 #define PORT 9000
 #define DATA_FILE "/var/tmp/aesdsocketdata"
 
+#include <stdbool.h>
+
+volatile bool terminate = false;
 static int running = 1;
 pthread_mutex_t data_mutex;
 pthread_t thread;
@@ -72,7 +75,7 @@ void *client_thread(void *arg)
 {
     struct node_info *node = (struct node_info *)arg;
     int client_fd = node->client->client_fd;
-    free(arg);
+    //free(arg);
 
     // Get client IP address
     struct sockaddr_in address;
@@ -145,8 +148,8 @@ void *client_thread(void *arg)
 
     printf("Thread completed\n");
 
-    pthread_cancel(pthread_self());
-    //pthread_exit(NULL);
+    //pthread_cancel(pthread_self());
+    pthread_exit(NULL);
 }
 
 void *append_timestamp(void *arg)
@@ -327,6 +330,9 @@ int main(int argc, char* argv[])
 
     
     printf("All threads completed");
+
+    // Set the termination flag
+    terminate = true;
 
     // Wait for all client threads to complete
     struct thread_node* thread_info;
